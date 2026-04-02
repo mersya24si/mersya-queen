@@ -1,6 +1,8 @@
+// Di file child component
 export const Header = ({ nama, role }) => (
-  <div className="card-biodata" style={{ textAlign: 'center', background: '#2c3e50', color: 'white' }}>
+  <div className="card-biodata" style={{ textAlign: 'center' }}> 
+    {/* Hapus background & color inline agar mengikuti custom.css */}
     <h1>{nama}</h1>
-    <p style={{ opacity: 0.9 }}>{role}</p>
+    <p style={{ fontStyle: 'italic', marginTop: '10px' }}>{role}</p>
   </div>
 );

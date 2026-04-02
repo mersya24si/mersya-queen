@@ -3,7 +3,7 @@ export const Experience = ({ listExp }) => (
     <h2 className="title-section">Pengalaman</h2>
     {listExp.map((exp, index) => (
       <div key={index} style={{ marginBottom: '10px' }}>
-        <strong>{exp.posisi}</strong> | {exp.perusahaan}
+        <strong>{exp.pengalaman}</strong> | {exp.pengalaman}
       </div>
     ))}
   </div>

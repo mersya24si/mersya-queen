@@ -13,13 +13,13 @@ const BiodataDiri = () => {
     umur: "20 tahun",
     bio: "Saya adalah mahasiswa yang fokus pada pengembangan antarmuka web yang responsif dan modern.",
     sekolah: [
-      { tahun: "2021 - 2025", namaSekolah: "Teknik Informatika - Universitas Teknologi" },
+      { tahun: "2021 - 2025", namaSekolah: "Sistem Informasi - Politeknik Caltex Riau" },
       { tahun: "2018 - 2021", namaSekolah: "SMAN 1 Tebing Tinggi" }
     ],
     keahlian: ["Menari", "Makeup", "Masak"],
     pengalaman: [
       { pengalaman: "Lomba tari mewakili kota di provinsi" },
-      { popengalaman: "Mengikuti lomba tari fls2n dan mendapatkan juara" }
+      { pengalaman: "Mengikuti lomba tari fls2n dan mendapatkan juara" }
     ],
     kontak: {
       email: "mersyameylaniputri@gmail.com",
