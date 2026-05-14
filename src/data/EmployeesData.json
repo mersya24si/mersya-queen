@@ -1,0 +1,12 @@
+[
+  { "id": "EMP-001", "name": "Nella Vita", "role": "Chief Pharmacist", "status": "Active", "shift": "Morning" },
+  { "id": "EMP-002", "name": "Johnny Ahmad", "role": "Pharmacist", "status": "Pending", "shift": "Afternoon" },
+  { "id": "EMP-003", "name": "Samantha W.", "role": "Assistant", "status": "Active", "shift": "Morning" },
+  { "id": "EMP-004", "name": "Tony Soap", "role": "Pharmacist", "status": "Active", "shift": "Night" },
+  { "id": "EMP-005", "name": "Karen Hope", "role": "Junior Pharmacist", "status": "Active", "shift": "Afternoon" },
+  { "id": "EMP-006", "name": "Jordan Nico", "role": "Inventory Manager", "status": "Off Duty", "shift": "Morning" },
+  { "id": "EMP-007", "name": "Nadila Adja", "role": "Quality Assurance", "status": "Active", "shift": "Morning" },
+  { "id": "EMP-008", "name": "Budi Santoso", "role": "Pharmacist", "status": "Active", "shift": "Night" },
+  { "id": "EMP-009", "name": "Siti Aminah", "role": "Assistant", "status": "Pending", "shift": "Afternoon" },
+  { "id": "EMP-010", "name": "Rico Febrian", "role": "Chief Pharmacist", "status": "Active", "shift": "Morning" }
+]
