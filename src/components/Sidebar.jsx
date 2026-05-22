@@ -1,4 +1,4 @@
-import { FaHome, FaUserTie, FaBoxOpen } from "react-icons/fa";
+import { FaHome, FaUserTie, FaBoxOpen } from "react-icons/fa"; // Hapus FaSignOutAlt dari import jika tidak dipakai lagi
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
@@ -40,6 +40,8 @@ export default function Sidebar() {
               <span className="text-[15px]">Product</span>
             </NavLink>
           </li>
+          
+          {/* BAGIAN SIGN OUT DI SINI SUDAH DIHAPUS */}
         </ul>
       </div>
 
@@ -51,7 +53,6 @@ export default function Sidebar() {
             Upgrade
           </button>
         </div>
-        {/* Dekorasi titik-titik (grid) */}
         <div className="absolute top-2 right-2 opacity-30">
           <div className="grid grid-cols-4 gap-1">
             {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-white rounded-full"></div>)}

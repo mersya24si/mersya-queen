@@ -1,57 +1,68 @@
-import React, { Suspense, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Route, Routes, Navigate } from "react-router-dom"; // Tambahkan Navigate
 
 // Asset imports
-import reactLogo from "./assets/react.svg";
-// HAPUS BARIS INI: import viteLogo from "/vite.svg"; 
 import "./assets/tailwind.css";
 
 // Component & Page imports
 import Loading from "./components/Loading";
-import Products from "./pages/Products";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Employee = React.lazy(() => import("./pages/Employee"));
-const Header = React.lazy(() => import("./components/Header"));
-const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
+const Products = React.lazy(() => import("./pages/Products"));
 const Login = React.lazy(() => import("./pages/auth/Login"));
 const Register = React.lazy(() => import("./pages/auth/Register"));
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
-const Sidebar = React.lazy(() => import("./components/Sidebar"));
 const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const NotFound = React.lazy(() => import("./pages/ErrorPage"));
-const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 
+// --- 1. KOMPONEN PROTEKSI ROUTE ---
+// Komponen ini mengecek apakah ada status "isLoggedIn" di localStorage
+const ProtectedRoute = ({ children }) => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  
+  if (!isLoggedIn) {
+    // Jika belum login, paksa ke halaman login
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 function App() {
-  // useState count ini bisa dihapus jika tidak digunakan di bawah
-  const [count, setCount] = useState(0);
-
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        {/* Main Routes with Sidebar/Header */}
-        <Route element={<MainLayout />}>
+        {/* --- 2. ROUTE TERPROTEKSI (Main Routes) --- */}
+        {/* Dibungkus dengan ProtectedRoute agar tidak bisa ditembus tanpa login */}
+        <Route 
+          element={
+            <ProtectedRoute>
+              <MainLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/" element={<Dashboard />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/product" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           
-          
-          {/* Error Routes */}
+          {/* Error Routes di dalam Dashboard */}
           <Route path="/error-400" element={<NotFound errorCode="400" errorDescription="Bad Request." />} />
           <Route path="/error-401" element={<NotFound errorCode="401" errorDescription="Unauthorized." />} />
           <Route path="/error-403" element={<NotFound errorCode="403" errorDescription="Forbidden." />} />
-          <Route path="*" element={<NotFound errorCode="404" errorDescription="Page not found" errorImage="/image_9dca28.jpg" />} />
         </Route>
 
-        {/* Auth Routes without Sidebar */}
+        {/* --- 3. AUTH ROUTES (Tanpa Sidebar) --- */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot" element={<Forgot />} />
         </Route>
+
+        {/* Catch All 404 */}
+        <Route path="*" element={<NotFound errorCode="404" errorDescription="Page not found" />} />
       </Routes>
     </Suspense>
   );
