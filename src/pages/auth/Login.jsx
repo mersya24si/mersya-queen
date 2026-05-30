@@ -10,6 +10,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [dataForm, setDataForm] = useState({ email: "", password: "" });
 
+  // --- 1. TAMBAHKAN KEMBALI FUNGSI INI ---
   const handleChange = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
   };
@@ -18,13 +19,24 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
+      // Menggunakan endpoint login dummyjson (pastikan username & password benar)
+      const response = await axios.post("https://dummyjson.com/auth/login", {
+        username: dataForm.email, // dummyjson pakai username
         password: dataForm.password,
       });
-      navigate("/");
+
+      if (response.data.accessToken) {
+        // --- 2. SET KUNCI LOGIN ---
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.data));
+
+        // Pindahkan ke dashboard menggunakan window.location agar route refresh
+        window.location.href = "/";
+      }
     } catch (err) {
-      alert("Invalid credentials");
+      alert("Invalid credentials. (Note: DummyJSON uses username, e.g: 'emilys')");
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -36,13 +48,12 @@ export default function Login() {
       <div className="hidden lg:flex w-1/2 bg-[#EF6E4D] flex-col justify-center items-center p-12 text-white">
         <div className="text-left w-full max-w-md">
           <h1 className="text-4xl font-bold mb-6 leading-tight">
-            FarmasiSystem<br />Professional Inventory
+            Farmasi System<br />Professional Inventory
           </h1>
           <p className="mb-8 opacity-90">Kelola stok obat dan data apoteker secara efisien dengan sistem terintegrasi.</p>
         </div>
-        {/* Ikon Medis Besar */}
         <div className="w-64 h-64 bg-white/10 rounded-full flex items-center justify-center">
-            <FaBriefcaseMedical size={100} className="text-white/30" />
+          <FaBriefcaseMedical size={100} className="text-white/30" />
         </div>
       </div>
 
@@ -53,21 +64,21 @@ export default function Login() {
           
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="relative">
-              <HiOutlineMail className="absolute left-4 top-4.5 text-gray-400" size={20} />
+              <HiOutlineMail className="absolute left-4 top-[18px] text-gray-400" size={20} />
               <input
                 type="text"
-                name="email"
-                placeholder="Enter Email"
-                onChange={handleChange}
+                name="email" // Harus sama dengan key di dataForm
+                placeholder="Enter Username/Email"
+                onChange={handleChange} // Fungsi sudah didefinisikan di atas
                 className="w-full pl-12 p-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#EF6E4D] transition-all"
               />
             </div>
 
             <div className="relative">
-              <HiOutlineLockClosed className="absolute left-4 top-4.5 text-gray-400" size={20} />
+              <HiOutlineLockClosed className="absolute left-4 top-[18px] text-gray-400" size={20} />
               <input
                 type={showPassword ? "text" : "password"}
-                name="password"
+                name="password" // Harus sama dengan key di dataForm
                 placeholder="••••••••"
                 onChange={handleChange}
                 className="w-full pl-12 pr-12 p-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#EF6E4D] transition-all"

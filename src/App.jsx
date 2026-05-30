@@ -31,7 +31,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <Routes>
 
-        {/* MAIN APP (PROTECTED) */}
+        {/* MAIN APP */}
         <Route
           element={
             <ProtectedRoute>
@@ -44,26 +44,14 @@ function App() {
           <Route path="/product" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
 
-          <Route
-            path="/error-400"
-            element={<NotFound errorCode="400" errorDescription="Bad Request." />}
-          />
-          <Route
-            path="/error-401"
-            element={<NotFound errorCode="401" errorDescription="Unauthorized." />}
-          />
-          <Route
-            path="/error-403"
-            element={<NotFound errorCode="403" errorDescription="Forbidden." />}
-          />
+          <Route path="/error-400" element={<NotFound errorCode="400" errorDescription="Bad Request." />} />
+          <Route path="/error-401" element={<NotFound errorCode="401" errorDescription="Unauthorized." />} />
+          <Route path="/error-403" element={<NotFound errorCode="403" errorDescription="Forbidden." />} />
 
-          <Route
-            path="*"
-            element={<NotFound errorCode="404" errorDescription="Page not found" />}
-          />
+          <Route path="*" element={<NotFound errorCode="404" errorDescription="Page not found" />} />
         </Route>
 
-        {/* AUTH ROUTES */}
+        {/* AUTH */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
