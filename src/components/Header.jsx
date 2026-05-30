@@ -14,17 +14,14 @@ export default function Header() {
           className="w-full pl-10 pr-4 py-2.5 bg-[#F6F6F6] rounded-xl text-sm outline-none border-none placeholder:text-[#A9A9A9]"
         />
       </div>
-
       {/* 2. Right Side Actions */}
       <div className="flex items-center gap-6">
-        
         {/* Language Selector */}
         <div className="flex items-center gap-2 cursor-pointer text-sm font-medium">
           <img src="https://flagcdn.com/w20/us.png" alt="USA" className="w-5" />
           <span>English (US)</span>
           <FaChevronDown className="text-[10px] text-gray-400" />
         </div>
-
         {/* Action Icons (Chat, Megaphone, Settings) */}
         <div className="flex items-center gap-5 text-[#2D3134]">
           <div className="relative cursor-pointer">
@@ -37,7 +34,6 @@ export default function Header() {
           </div>
           <FaCog size={20} className="cursor-pointer" />
         </div>
-
         {/* Profile Section */}
         <div className="flex items-center gap-3 pl-4 border-l border-gray-100">
           <div className="text-right">

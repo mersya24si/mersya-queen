@@ -23,7 +23,6 @@ const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const NotFound = React.lazy(() => import("./pages/ErrorPage"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
 
-
 function App() {
   // useState count ini bisa dihapus jika tidak digunakan di bawah
   const [count, setCount] = useState(0);
@@ -37,7 +36,6 @@ function App() {
           <Route path="/employee" element={<Employee />} />
           <Route path="/product" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          
           
           {/* Error Routes */}
           <Route path="/error-400" element={<NotFound errorCode="400" errorDescription="Bad Request." />} />

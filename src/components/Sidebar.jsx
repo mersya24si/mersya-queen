@@ -8,17 +8,14 @@ export default function Sidebar() {
       "text-[#EF6E4D] bg-[#F9E8E7] font-medium" : 
       "text-[#666666] hover:text-[#EF6E4D] hover:bg-[#F9E8E7]/50 font-normal"
     }`;
-
   return (
     <div id="sidebar" className="flex flex-col min-h-screen w-72 bg-white p-6 border-r border-gray-50 font-poppins">
-      
       {/* Logo Section */}
       <div id="sidebar-logo" className="flex flex-col mb-12 px-4 group cursor-pointer">
         <span className="text-[32px] text-black font-semibold leading-none tracking-tight">
           Apotek<span className="text-[#EF6E4D]">.</span>
         </span>
       </div>
-
       {/* Menu Section */}
       <div id="sidebar-menu" className="flex-1">
         <ul id="menu-list" className="space-y-2">
@@ -42,7 +39,6 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
-
       {/* Upgrade Card Section */}
       <div className="bg-gradient-to-br from-[#EF6E4D] to-[#F9A888] rounded-3xl p-6 text-white relative overflow-hidden mt-auto">
         <div className="relative z-10">
@@ -58,7 +54,6 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

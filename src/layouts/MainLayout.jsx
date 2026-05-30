@@ -12,7 +12,6 @@ export default function MainLayout() {
     >
       {/* Sidebar - Tetap di kiri */}
       <Sidebar />
-
       {/* Main Content Area */}
       <div
         id="main-content"
@@ -20,7 +19,6 @@ export default function MainLayout() {
       >
         {/* Header */}
         <Header />
-
         {/* Page Content Container - Pastikan flex-1 ada di sini agar Outlet punya ruang */}
         <main className="flex-1 overflow-y-auto px-8 pb-10 custom-scrollbar">
           <div className="max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-3 duration-700">

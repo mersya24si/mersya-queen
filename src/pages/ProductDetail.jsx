@@ -56,20 +56,16 @@ export default function ProductDetail() {
                 SKU: {product.code}
               </span>
             </div>
-
             <h1 className="text-4xl font-bold text-[#2D3134] mb-4 tracking-tight">{product.title}</h1>
-            
             <p className="text-[#A9A9A9] text-sm mb-8 flex items-center">
               <FaTag className="mr-2 opacity-50" /> 
               Produsen: <span className="text-[#2D3134] ml-1 font-semibold">{product.brand}</span>
             </p>
-
             <div className="space-y-6 mb-10">
               <p className="text-[#A9A9A9] leading-relaxed text-sm">
                 Informasi detail untuk obat <strong>{product.title}</strong> produksi <strong>{product.brand}</strong>. 
                 Produk ini terdaftar dalam kategori {product.category} dengan stok yang tersedia saat ini di apotek.
               </p>
-
               <div className="flex items-center space-x-8">
                 <div>
                   <p className="text-[10px] text-[#A9A9A9] uppercase tracking-widest font-bold mb-1">Harga Satuan</p>
