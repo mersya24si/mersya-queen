@@ -5,7 +5,7 @@ import productsData from "../data/ProductsData.json";
 
 import ProductStats from "../components/ProductStats";
 import ProductSearch from "../components/ProductSearch";
-import ProductTable from "..g/components/ProductTable";
+import ProductTable from "../components/ProductTable";
 
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState("");

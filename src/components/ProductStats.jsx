@@ -2,6 +2,7 @@ import {
   FaBoxOpen,
   FaLayerGroup,
   FaEllipsisH,
+  FaExclamationTriangle,
 } from "react-icons/fa";
 
 export default function ProductStats({ total }) {
@@ -19,7 +20,7 @@ export default function ProductStats({ total }) {
     {
       title: "Expired Soon",
       count: "5",
-      icon: <FaEllipsisH />,
+      icon: <FaExclamationTriangle />,
     },
     {
       title: "Categories",
@@ -29,14 +30,14 @@ export default function ProductStats({ total }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       {stats.map((item, i) => (
         <div
           key={i}
-          className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between"
+          className="bg-white p-5 rounded-2xl shadow flex justify-between items-center"
         >
           <div>
-            <p className="text-gray-400 text-[10px] uppercase font-bold tracking-wider">
+            <p className="text-sm text-gray-500">
               {item.title}
             </p>
 

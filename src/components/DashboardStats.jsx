@@ -38,11 +38,11 @@ export default function DashboardStats() {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       {stats.map((item, i) => (
         <div
           key={i}
-          className="bg-white p-5 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 flex items-center gap-4"
+          className="bg-white rounded-2xl p-5 shadow flex items-center gap-4"
         >
           <div
             className={`text-xl p-3 rounded-2xl ${item.bg} ${item.color}`}

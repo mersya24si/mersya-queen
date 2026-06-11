@@ -1,11 +1,11 @@
 export default function ProductInfoCard({ product }) {
   return (
     <>
-      <h1 className="text-4xl font-bold">
+      <h2 className="text-2xl font-bold">
         {product.title}
-      </h1>
+      </h2>
 
-      <p>
+      <p className="text-gray-500">
         {product.brand}
       </p>
     </>

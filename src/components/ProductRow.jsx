@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function ProductRow({ prod, getCategoryStyle }) {
   return (
-    <tr className="border-b border-gray-50 last:border-0 hover:bg-gray-50">
-      <td className="py-4 text-sm font-bold text-gray-700">
-        {prod.code}
-      </td>
+    <tr className="border-b">
+      <td className="px-6 py-4">{prod.code}</td>
 
       <td className="px-6 py-4">
         <Link

@@ -2,10 +2,8 @@ import { FaSearch } from "react-icons/fa";
 
 export default function ProductSearch({ setSearchTerm }) {
   return (
-    <div className="relative w-full md:w-64">
-      <FaSearch
-        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-      />
+    <div className="relative">
+      <FaSearch className="absolute left-3 top-3 text-gray-400" />
 
       <input
         type="text"
