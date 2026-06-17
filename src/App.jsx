@@ -4,9 +4,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./assets/tailwind.css";
 import Loading from "./components/Loading";
 
+
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+const MemberDashboard = React.lazy(() => import("./pages/MemberDashboard"));
 const Employee = React.lazy(() => import("./pages/Employee"));
 const Products = React.lazy(() => import("./pages/Products"));
+const GuestDashboard = React.lazy(() => import("./pages/GuestDashboard"));
 const Login = React.lazy(() => import("./pages/auth/Login"));
 const Register = React.lazy(() => import("./pages/auth/Register"));
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
@@ -15,33 +18,25 @@ const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const NotFound = React.lazy(() => import("./pages/ErrorPage"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 
-// PROTECTED ROUTE
-const ProtectedRoute = ({ children }) => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-};
 
 function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/dashboard" element={<GuestDashboard />} />
+        <Route path="/member-dashboard" element={<MemberDashboard />} />
 
         {/* MAIN APP */}
         <Route
           element={
-            <ProtectedRoute>
               <MainLayout />
-            </ProtectedRoute>
           }
         >
           <Route path="/" element={<Dashboard />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/product" element={<Products />} />
+          
           <Route path="/products/:id" element={<ProductDetail />} />
 
           <Route path="/error-400" element={<NotFound errorCode="400" errorDescription="Bad Request." />} />
