@@ -16,7 +16,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"; 
 
-// IMPORT KOMPONEN BARU: AVATAR & TOOLTIP
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,
@@ -27,7 +26,8 @@ import {
 
 import EmployeeActions from "./EmployeeActions"; 
 
-export default function EmployeeTable({ employees }) {
+// Mengubah properti dari 'employees' menjadi 'employee' agar sinkron dengan Employee.jsx
+export default function EmployeeTable({ employee = [], onRefresh }) {
   return (
     <div className="rounded-xl border border-gray-100 overflow-hidden">
       <Table>
@@ -41,23 +41,18 @@ export default function EmployeeTable({ employees }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {employees.length > 0 ? (
-            employees.map((emp) => {
-              // Mengambil huruf pertama nama untuk Fallback Avatar
+          {employee.length > 0 ? (
+            employee.map((emp) => {
               const initial = emp.name ? emp.name.charAt(0).toUpperCase() : "?";
-              
-              // Menentukan warna badge status secara dinamis
               const isActive = emp.status === "active" || !emp.status; 
 
               return (
                 <TableRow key={emp.id} className="hover:bg-gray-50/50">
                   <TableCell className="font-medium text-gray-500">#{emp.id}</TableCell>
                   
-                  {/* KOLOM NAMA + AVATAR + SHADCN SHEET */}
                   <TableCell>
                     <Sheet>
                       <SheetTrigger className="flex items-center gap-3 text-left outline-none group">
-                        {/* 1. Implementasi Shadcn Avatar */}
                         <Avatar className="h-9 w-9 border border-gray-100 shadow-sm">
                           <AvatarImage src={emp.image} alt={emp.name} />
                           <AvatarFallback className="bg-[#EF6E4D]/10 text-[#EF6E4D] font-bold text-sm">
@@ -83,7 +78,6 @@ export default function EmployeeTable({ employees }) {
                           </SheetDescription>
                         </SheetHeader>
                         
-                        {/* Konten Detail Profil di dalam Sheet */}
                         <div className="space-y-6">
                           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl">
                             <Avatar className="h-14 w-14 border border-white shadow-md">
@@ -115,7 +109,6 @@ export default function EmployeeTable({ employees }) {
 
                   <TableCell className="text-gray-600">{emp.role || "Pharmacist"}</TableCell>
                   
-                  {/* KOLOM STATUS + SHADCN TOOLTIP */}
                   <TableCell>
                     <TooltipProvider delayDuration={200}>
                       <Tooltip>
@@ -140,7 +133,8 @@ export default function EmployeeTable({ employees }) {
                   </TableCell>
 
                   <TableCell className="text-right">
-                    <EmployeeActions employee={emp} />
+                    {/* Teruskan onRefresh ke EmployeeActions jika nanti dibutuhkan setelah proses hapus data */}
+                    <EmployeeActions employee={emp} onRefresh={onRefresh} />
                   </TableCell>
                 </TableRow>
               );

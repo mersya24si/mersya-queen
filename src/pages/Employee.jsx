@@ -1,34 +1,52 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaUserPlus } from "react-icons/fa";
 
-import EmployeeData from "../data/EmployeeData.json";
+// 1. Import service userAPI Supabase kamu
+import { userAPI } from "../services/userAPI.js";
 
 import EmployeeStats from "../components/EmployeeStats";
 import EmployeeSearch from "../components/EmployeeSearch";
 import EmployeeTable from "../components/EmployeeTable";
 
 export default function Employee() {
-  // 1. useState: Menyimpan state pencarian
+  // 2. Siapkan state untuk menampung data dari Supabase (default array kosong agar tidak error .length)
+  const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
   
-  // 2. useRef: Menyimpan referensi langsung ke elemen input DOM pencarian
   const searchInputRef = useRef(null);
 
-  const filteredEmployee = EmployeeData.filter(emp =>
-    emp.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // 3. Fungsi mengambil data dari Supabase
+  const loadEmployees = async () => {
+    try {
+      setLoading(true);
+      const data = await userAPI.fetchUsers();
+      setEmployees(data || []); // Pastikan jika null/undefined tetap menjadi array kosong
+    } catch (error) {
+      console.error("Gagal memuat data pegawai:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 4. Jalankan loadEmployees saat halaman pertama kali dibuka
+  useEffect(() => {
+    loadEmployees();
+    
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
+
+  // Filter pencarian berdasarkan state employees dari Supabase
+  const filteredEmployee = employees.filter(emp =>
+    emp.name && emp.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // 3. useEffect (Skenario 1): Auto-focus pada input saat komponen pertama kali dimuat
-  useEffect(() => {
-    if (searchInputRef.current) {
-      searchInputRef.current.focus(); // Mengarahkan kursor secara otomatis
-    }
-  }, []); // Dependency array kosong = hanya berjalan satu kali (saat mount)
-
-  // 4. useEffect (Skenario 2): Mengubah Document Title berdasarkan pencarian
+  // Mengubah Document Title berdasarkan hasil pencarian
   useEffect(() => {
     document.title = `Ditemukan ${filteredEmployee.length} Apoteker`;
-  }, [searchTerm]); // Berjalan setiap kali searchTerm berubah
+  }, [searchTerm, employees]);
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen font-poppins">
@@ -43,7 +61,8 @@ export default function Employee() {
         </button>
       </div>
 
-      <EmployeeStats total={EmployeeData.length} />
+      {/* Menggunakan length dari state Supabase */}
+      <EmployeeStats total={employees.length} />
 
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
@@ -53,14 +72,19 @@ export default function Employee() {
 
           <EmployeeSearch
             setSearchTerm={setSearchTerm}
-            // Passing ref ini ke dalam EmployeeSearch component
             inputRef={searchInputRef} 
           />
         </div>
 
-        <EmployeeTable
-          employee={filteredEmployee}
-        />
+        {/* Tampilkan loading jika data sedang diambil */}
+        {loading ? (
+          <p className="text-center py-4 text-gray-500">Memuat data dari Supabase...</p>
+        ) : (
+          <EmployeeTable
+            employee={filteredEmployee}
+            onRefresh={loadEmployees} // Bisa dilempar ke komponen anak untuk trigger refresh setelah delete
+          />
+        )}
       </div>
     </div>
   );
