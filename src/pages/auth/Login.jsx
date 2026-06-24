@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { HiOutlineEye, HiOutlineEyeOff, HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 import { FaBriefcaseMedical } from "react-icons/fa";
+
+import { userAPI } from "../../services/userAPI.js";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,7 +11,6 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [dataForm, setDataForm] = useState({ email: "", password: "" });
 
-  // --- 1. TAMBAHKAN KEMBALI FUNGSI INI ---
   const handleChange = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
   };
@@ -19,23 +19,19 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      // Menggunakan endpoint login dummyjson (pastikan username & password benar)
-      const response = await axios.post("https://dummyjson.com/auth/login", {
-        username: dataForm.email, // dummyjson pakai username
-        password: dataForm.password,
-      });
+      // 1. Panggil fungsi login baru yang terhubung ke Supabase
+      const user = await userAPI.loginUser(dataForm.email, dataForm.password);
 
-      if (response.data.accessToken) {
-        // --- 2. SET KUNCI LOGIN ---
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("token", response.data.accessToken);
-        localStorage.setItem("user", JSON.stringify(response.data));
+      // 2. Jika user ditemukan, simpan status login ke localStorage
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify(user));
 
-        // Pindahkan ke dashboard menggunakan window.location agar route refresh
-        window.location.href = "/";
-      }
+      // Pindahkan ke dashboard utama
+      window.location.href = "/";
+      
     } catch (err) {
-      alert("Invalid credentials. (Note: DummyJSON uses username, e.g: 'emilys')");
+      // Menangkap pesan error dari throw Error di userAPI
+      alert(err.message || "Login gagal. Periksa kembali jaringan atau kredensial Anda.");
       console.error(err);
     } finally {
       setLoading(false);
@@ -66,10 +62,11 @@ export default function Login() {
             <div className="relative">
               <HiOutlineMail className="absolute left-4 top-[18px] text-gray-400" size={20} />
               <input
-                type="text"
-                name="email" // Harus sama dengan key di dataForm
-                placeholder="Enter Username/Email"
-                onChange={handleChange} // Fungsi sudah didefinisikan di atas
+                type="email" // Ubah type ke email agar lebih valid
+                name="email"
+                placeholder="Enter Your Email"
+                required
+                onChange={handleChange}
                 className="w-full pl-12 p-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#EF6E4D] transition-all"
               />
             </div>
@@ -78,8 +75,9 @@ export default function Login() {
               <HiOutlineLockClosed className="absolute left-4 top-[18px] text-gray-400" size={20} />
               <input
                 type={showPassword ? "text" : "password"}
-                name="password" // Harus sama dengan key di dataForm
+                name="password"
                 placeholder="••••••••"
+                required
                 onChange={handleChange}
                 className="w-full pl-12 pr-12 p-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#EF6E4D] transition-all"
               />
@@ -93,14 +91,20 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#EF6E4D] text-white py-4 rounded-xl font-bold hover:bg-[#d65d3e] transition-all shadow-lg shadow-[#EF6E4D]/20"
+              className="w-full bg-[#EF6D4D] text-white py-4 rounded-xl font-bold hover:bg-[#d65d3e] transition-all shadow-lg shadow-[#EF6E4D]/20 disabled:opacity-50"
             >
               {loading ? "Processing..." : "Sign In"}
             </button>
           </form>
 
           <div className="mt-8 text-center text-[#A9A9A9] text-sm">
-            Belum punya akun? <span className="font-bold text-[#EF6E4D] cursor-pointer hover:underline">Daftar sekarang</span>
+            Belum punya akun?{" "}
+            <span 
+              onClick={() => navigate("/register")} 
+              className="font-bold text-[#EF6E4D] cursor-pointer hover:underline"
+            >
+              Daftar sekarang
+            </span>
           </div>
         </div>
       </div>

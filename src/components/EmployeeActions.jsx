@@ -1,4 +1,3 @@
-// src/components/EmployeeActions.jsx
 import React from "react";
 import { Edit, Trash2, Eye } from "lucide-react";
 

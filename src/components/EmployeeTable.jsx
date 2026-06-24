@@ -1,4 +1,3 @@
-// src/components/EmployeeTable.jsx
 import React from "react";
 import {
   Table,
@@ -17,7 +16,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"; 
 
-// 👇 IMPORT KOMPONEN BARU: AVATAR & TOOLTIP
+// IMPORT KOMPONEN BARU: AVATAR & TOOLTIP
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,

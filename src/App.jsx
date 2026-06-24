@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./assets/tailwind.css";
 import Loading from "./components/Loading";
 
-
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const MemberDashboard = React.lazy(() => import("./pages/MemberDashboard"));
 const Employee = React.lazy(() => import("./pages/Employee"));
@@ -17,8 +16,6 @@ const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const NotFound = React.lazy(() => import("./pages/ErrorPage"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
-
-
 
 function App() {
   return (
@@ -36,13 +33,10 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/product" element={<Products />} />
-          
           <Route path="/products/:id" element={<ProductDetail />} />
-
           <Route path="/error-400" element={<NotFound errorCode="400" errorDescription="Bad Request." />} />
           <Route path="/error-401" element={<NotFound errorCode="401" errorDescription="Unauthorized." />} />
           <Route path="/error-403" element={<NotFound errorCode="403" errorDescription="Forbidden." />} />
-
           <Route path="*" element={<NotFound errorCode="404" errorDescription="Page not found" />} />
         </Route>
 
@@ -52,7 +46,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot" element={<Forgot />} />
         </Route>
-
       </Routes>
     </Suspense>
   );
