@@ -593,7 +593,7 @@ export default function GuestDashboard() {
           
           {/* GALLERY 1 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-square">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6b?auto=format&fit=crop&w=600&q=80" alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=600&q=80" alt="Spa Treatment" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
@@ -602,7 +602,7 @@ export default function GuestDashboard() {
 
           {/* GALLERY 2 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-square">
-            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Gallery 2" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Spa Relaxation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
@@ -611,7 +611,7 @@ export default function GuestDashboard() {
 
           {/* GALLERY 3 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-square">
-            <img src="https://images.unsplash.com/photo-1570172619644-dfd03e5d881?auto=format&fit=crop&w=600&q=80" alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03e5d881?auto=format&fit=crop&w=600&q=80" alt="Skincare Products" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
@@ -620,7 +620,7 @@ export default function GuestDashboard() {
 
           {/* GALLERY 4 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-[4/5]">
-            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=80" alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=80" alt="Beauty Treatment" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
@@ -629,7 +629,7 @@ export default function GuestDashboard() {
 
           {/* GALLERY 5 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-[4/5]">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Gallery 5" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=600&q=80" alt="Aesthetic Clinic" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
@@ -638,7 +638,7 @@ export default function GuestDashboard() {
 
           {/* GALLERY 6 */}
           <div className="relative rounded-[2rem] overflow-hidden group cursor-pointer aspect-square">
-            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=600&q=80" alt="Gallery 6" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=600&q=80" alt="Wellness Spa" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-[#2D3134]/0 group-hover:bg-[#2D3134]/40 transition-all duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <HiOutlineSparkles className="text-white text-3xl" />
